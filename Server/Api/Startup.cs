@@ -17,6 +17,7 @@ using Org.BouncyCastle.Asn1.Cms;
 using System;
 using System.IO;
 using System.Text;
+using ClinicApp.Api.Middleware;
 using Entities.Appsettings;
 
 namespace ClinicApp.Api
@@ -111,6 +112,8 @@ namespace ClinicApp.Api
             app.UseStaticFiles();
 
             app.UseCors("CorsPolicy");
+            // global error handler
+            app.UseMiddleware<ErrorHandlerMiddleware>();
 
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
