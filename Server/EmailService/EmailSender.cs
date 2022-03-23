@@ -5,18 +5,17 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Contracts;
+using Serilog;
 
 namespace EmailService
 {
     public class EmailSender : IEmailSender
     {
         private readonly EmailConfiguration _emailConfig;
-        private readonly ILoggerManager _logger;
 
-        public EmailSender(EmailConfiguration emailConfig, ILoggerManager logger)
+        public EmailSender(EmailConfiguration emailConfig)
         {
             _emailConfig = emailConfig;
-            _logger = logger;
         }
 
         public void SendEmail(Message message)
@@ -28,7 +27,7 @@ namespace EmailService
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Exception in {nameof(SendEmailAsync)} {Environment.NewLine}" +
+                Log.Logger.Error($"Exception in {nameof(SendEmailAsync)} {Environment.NewLine}" +
                                  $"{ex}");
             }
         }
@@ -42,7 +41,7 @@ namespace EmailService
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Exception in {nameof(SendEmailAsync)} {Environment.NewLine}" +
+                Log.Logger.Error($"Exception in {nameof(SendEmailAsync)} {Environment.NewLine}" +
                                  $"{ex}");
             }
         }
@@ -89,7 +88,7 @@ namespace EmailService
                 }
                 catch(Exception ex)
                 {
-                    _logger.LogError($"Exception in {nameof(Send)} {Environment.NewLine}" +
+                    Log.Logger.Error($"Exception in {nameof(Send)} {Environment.NewLine}" +
                                      $"{ex}");
                 }
                 finally
@@ -114,7 +113,7 @@ namespace EmailService
                 }
                 catch(Exception ex)
                 {
-                    _logger.LogError($"Exception in {nameof(SendAsync)} {Environment.NewLine}" +
+                    Log.Logger.Error($"Exception in {nameof(SendAsync)} {Environment.NewLine}" +
                                      $"{ex}");
                 }
                 finally

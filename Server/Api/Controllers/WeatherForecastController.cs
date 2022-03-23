@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Contracts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace ClinicApp.Api.Controllers
 {
@@ -22,6 +23,10 @@ namespace ClinicApp.Api.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
+            var test = "test var value";
+            var position = new { Latitude = 25, Longitude = 134 };
+
+            Log.Logger.Warning("sending email... {@Position}", position);            
             //_repository.Company.AnyMethodFromCompanyRepository();
             //_repository.Employee.AnyMethodFromEmployeeRepository();
 
