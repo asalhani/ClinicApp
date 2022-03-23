@@ -42,7 +42,7 @@ namespace ClinicApp.Api.Middleware
                 using (LogContext.PushProperty("RequestBody",await ReadBodyFromRequest(context.Request)))
                 using (LogContext.PushProperty("Host", context.Request.Host))
                 {
-                    Log.Logger.Error(error, $"{error.Message} - Error ID: {errorResponse.ErrorId}");
+                    Log.Logger.Error(error, $"{error.Message} - ErrorId: {errorResponse.ErrorId}");
 
                     var response = context.Response;
                     response.ContentType = "application/json";
@@ -53,14 +53,14 @@ namespace ClinicApp.Api.Middleware
                         case AppException e:
                             // custom application error
                             errorResponse.StatusCode = (int) HttpStatusCode.BadRequest;
-                            errorResponse.ErrorMessage = $"{e.Message}. Error ID: [{errorResponse.ErrorId}]";
+                            errorResponse.ErrorMessage = $"{e.Message}. ErrorId: [{errorResponse.ErrorId}]";
                             errorResponse.ErrorDetails = e.ToString();
                             break;
                         default:
                             // unhandled error
                             errorResponse.StatusCode = (int) HttpStatusCode.InternalServerError;
                             errorResponse.ErrorMessage =
-                                $"Unhandled exception occured. Try again or contact system administrator. Error ID: {errorResponse.ErrorId}";
+                                $"Unhandled exception occured. Try again or contact system administrator. ErrorId: {errorResponse.ErrorId}";
                             errorResponse.ErrorDetails = error.ToString();
                             break;
                     }

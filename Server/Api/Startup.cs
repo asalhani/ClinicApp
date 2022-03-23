@@ -106,17 +106,14 @@ namespace ClinicApp.Api
             }
             else
             {
-                app.UseHsts();
+                // app.UseHsts();
             }
 
-            
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseCors("CorsPolicy");
             // global error handler
             app.UseMiddleware<ErrorHandlerMiddleware>();
-            // app.UseSerilogRequestLogging();
             
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
