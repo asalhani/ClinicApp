@@ -19,6 +19,7 @@ using System.IO;
 using System.Text;
 using ClinicApp.Api.Middleware;
 using Entities.Appsettings;
+using Serilog;
 
 namespace ClinicApp.Api
 {
@@ -108,13 +109,15 @@ namespace ClinicApp.Api
                 app.UseHsts();
             }
 
+            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseCors("CorsPolicy");
             // global error handler
             app.UseMiddleware<ErrorHandlerMiddleware>();
-
+            // app.UseSerilogRequestLogging();
+            
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
                 ForwardedHeaders = ForwardedHeaders.All

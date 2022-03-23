@@ -45,16 +45,7 @@ namespace ClinicApp.Api
             SetupLogger(configuration);
             host.Run();
         }
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) => WebHost.CreateDefaultBuilder(args)
-            .UseSerilog((hostingContext, loggerConfiguration) => 
-                loggerConfiguration
-                    .ReadFrom.Configuration(hostingContext.Configuration)
-                    .Enrich.FromLogContext()
-                    .WriteTo.Console(
-                        outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj} {Properties:j}{NewLine}{Exception}")
-            )
-            .UseStartup<Startup>();
-        
+       
         public static void SetupLogger(IConfiguration configuration)
         {
             var maxResturtureDepth = configuration.GetSection("Serilog:MaxResturtureDepth").Get<int>();
