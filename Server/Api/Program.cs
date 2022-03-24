@@ -18,33 +18,27 @@ namespace ClinicApp.Api
 
         public static void Main(string[] args)
         {
-            // CreateHostBuilder(args).Build().Run();
-            SetupService<Startup>(args, BuildConfiguration());
+            // var configuration = BuildConfiguration();
+            // var host = WebHost.CreateDefaultBuilder(args)
+            //     .UseConfiguration(configuration)
+            //     .UseStartup<Startup>()
+            //     .UseSerilog()
+            //     .Build();
+            //
+            // SetupLogger(configuration);
+            // host.Run();
+            
+            
+             CreateHostBuilder(args).Build().Run();
         }
         
-        public static IConfiguration BuildConfiguration()
-        {
-            var currentEnv = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-
-            return new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile($"appsettings.json", false)
-                .AddJsonFile($"appsettings.{currentEnv}.json", optional: true)
-                .AddEnvironmentVariables()
-                .Build();
-        }
-
-        public static void SetupService<startup>(string[] args, IConfiguration configuration) where startup : class
-        {
-            var host = WebHost.CreateDefaultBuilder(args)
-                .UseConfiguration(configuration)
-                .UseStartup<startup>()
-                .UseSerilog()
-                .Build();
-
-            SetupLogger(configuration);
-            host.Run();
-        }
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                }).UseSerilog();
+        
        
         public static void SetupLogger(IConfiguration configuration)
         {

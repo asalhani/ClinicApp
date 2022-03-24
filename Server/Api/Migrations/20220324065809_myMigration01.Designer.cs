@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClinicApp.Api.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20200803081132_IdentityTablesCreation")]
-    partial class IdentityTablesCreation
+    [Migration("20220324065809_myMigration01")]
+    partial class myMigration01
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -214,6 +214,22 @@ namespace ClinicApp.Api.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "236143a5-3a8d-45f4-8880-5a92f1e95bfa",
+                            ConcurrencyStamp = "44a762af-f6f9-43c2-8aeb-ccaa5cb57111",
+                            Name = "Viewer",
+                            NormalizedName = "VIEWER"
+                        },
+                        new
+                        {
+                            Id = "99add92f-76ca-421d-bf3b-a6a65363b508",
+                            ConcurrencyStamp = "be3653fe-a6d3-4f63-9274-b69bf8c01a51",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

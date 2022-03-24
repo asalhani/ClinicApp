@@ -216,15 +216,15 @@ namespace ClinicApp.Api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "cba00727-0fe0-4863-829a-c0a6b8014753",
-                            ConcurrencyStamp = "c033d48c-7ec7-4c0f-95ae-5c842c7d75dd",
+                            Id = "236143a5-3a8d-45f4-8880-5a92f1e95bfa",
+                            ConcurrencyStamp = "44a762af-f6f9-43c2-8aeb-ccaa5cb57111",
                             Name = "Viewer",
                             NormalizedName = "VIEWER"
                         },
                         new
                         {
-                            Id = "91b8dbdd-50ed-4a9e-9bba-99ec95616787",
-                            ConcurrencyStamp = "f8637bc2-c31f-4b47-a97f-2b7fa163eb54",
+                            Id = "99add92f-76ca-421d-bf3b-a6a65363b508",
+                            ConcurrencyStamp = "be3653fe-a6d3-4f63-9274-b69bf8c01a51",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
